@@ -1,11 +1,10 @@
+// app.routes.ts
 import { NgModule } from '@angular/core';
-import { Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component';
+import { RouterModule } from '@angular/router';
+// import { AppRoutingModule } from './app-routing.module';
 
-
-export const routes: Routes = [
-    {path:'', redirectTo:'login', pathMatch:'full'},
-    {path:'login', component:LoginComponent},
-   
-    {path:'**', component:LoginComponent},
-];
+@NgModule({
+  imports: [AppRoutesModule],
+  exports: [RouterModule],
+})
+export class AppRoutesModule {}

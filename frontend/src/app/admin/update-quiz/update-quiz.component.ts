@@ -4,7 +4,7 @@ import Swal from 'sweetalert2';
 import { CategoryService } from '../../services/category.service';
 import { QuizService } from '../../services/quiz.service';
 
-// Correct interface syntax
+// Define interfaces here
 interface Quiz {
   id: number;
   title: string;
@@ -53,6 +53,7 @@ export class UpdateQuizComponent implements OnInit {
 
   ngOnInit(): void {
     this.qId = this._route.snapshot.params['qid']; // Get route param
+
     this._quiz.getQuiz(this.qId).subscribe(
       (data: Quiz) => {
         this.quiz = data; // Assign data to quiz
@@ -76,7 +77,7 @@ export class UpdateQuizComponent implements OnInit {
   // Update form submit
   public updateData() {
     this._quiz.updateQuiz(this.quiz).subscribe(
-      (data) => {
+      (data: Quiz) => {
         Swal.fire('Success !!', 'Quiz updated successfully', 'success').then((e) => {
           this._router.navigate(['/admin/quizzes']);
         });
