@@ -3,46 +3,44 @@ import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { CategoryService } from '../../services/category.service';
 import { QuizService } from '../../services/quiz.service';
-
-// Define interfaces here
-interface Quiz {
-  id: number;
-  title: string;
-  description: string;
-  maxMarks: string;
-  numberOfQuestions: string;
-  active: boolean;
-  category: Category;
-}
-
-interface Category {
-  id: number;
-  title: string;
-  description: string;
-}
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular'; 
+import { FormsModule } from '@angular/forms'; 
+import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { Category } from '../../services/category.model'; // Import Category model
+import { Quiz } from '../../services/quiz'; // Import Quiz model
 
 @Component({
   selector: 'app-update-quiz',
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    MatCardModule,
+    MatButtonModule,
+    CKEditorModule  
+  ],
   templateUrl: './update-quiz.component.html',
-  styleUrls: ['./update-quiz.component.css'],
+  styleUrls: ['./update-quiz.component.scss']
 })
 export class UpdateQuizComponent implements OnInit {
-  qId = 0;
+  qId: number = 0;
   quiz: Quiz = {
     id: 0,
     title: '',
     description: '',
-    maxMarks: '',
-    numberOfQuestions: '',
+    
+    // Ensure property names match
     active: true,
     category: {
       id: 0,
       title: '',
       description: ''
     }
-  }; // Initialize with default values
+  };
 
-  categories: Category[] = []; // Initialize as an empty array
+  categories: Category[] = []; 
 
   constructor(
     private _route: ActivatedRoute,
@@ -52,12 +50,11 @@ export class UpdateQuizComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.qId = this._route.snapshot.params['qid']; // Get route param
+    this.qId = this._route.snapshot.params['qid'];
 
     this._quiz.getQuiz(this.qId).subscribe(
       (data: Quiz) => {
-        this.quiz = data; // Assign data to quiz
-        console.log(this.quiz);
+        this.quiz = data;
       },
       (error) => {
         console.log(error);
@@ -66,7 +63,7 @@ export class UpdateQuizComponent implements OnInit {
 
     this._cat.categories().subscribe(
       (data: Category[]) => {
-        this.categories = data; // Assign categories
+        this.categories = data;
       },
       (error) => {
         alert('Error in loading categories');
@@ -74,11 +71,10 @@ export class UpdateQuizComponent implements OnInit {
     );
   }
 
-  // Update form submit
   public updateData() {
     this._quiz.updateQuiz(this.quiz).subscribe(
       (data: Quiz) => {
-        Swal.fire('Success !!', 'Quiz updated successfully', 'success').then((e) => {
+        Swal.fire('Success !!', 'Quiz updated successfully', 'success').then(() => {
           this._router.navigate(['/admin/quizzes']);
         });
       },

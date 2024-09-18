@@ -1,4 +1,89 @@
-.full-width {
-    width: 100%;
+// styles.scss
+
+$primary-color: #007bff;
+$secondary-color: #6c757d;
+$background-color: #f8f9fa;
+$text-color: #343a40;
+$button-radius: 0.25rem;
+$input-radius: 0.25rem;
+
+.bootstrap-wrapper {
+  background-color: $background-color;
+  padding: 2rem 0;
+
+  .container {
+    background-color: #ffffff;
+    border-radius: $input-radius;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    max-width: 500px;
+    margin: auto;
+
+    .text-center {
+      margin-bottom: 1rem;
+    }
+
+    img {
+      width: 100px;
+      height: auto;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      color: $text-color;
+      margin-bottom: 2rem;
+      font-size: 1.5rem;
+    }
+
+    form {
+      .form-group {
+        margin-bottom: 1rem;
+
+        label {
+          font-weight: bold;
+          color: $text-color;
+        }
+
+        input {
+          border: 1px solid $secondary-color;
+          border-radius: $input-radius;
+          padding: 0.75rem;
+          width: 100%;
+          box-sizing: border-box;
+          font-size: 1rem;
+
+          &:focus {
+            border-color: $primary-color;
+            outline: none;
+          }
+        }
+      }
+
+      .container.text-center {
+        margin-top: 2rem;
+
+        button {
+          border-radius: $button-radius;
+          font-size: 1rem;
+          padding: 0.5rem 1rem;
+          margin: 0.5rem;
+          cursor: pointer;
+
+          &.mat-raised-button {
+            color: #ffffff;
+            border: none;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+            &.color-primary {
+              background-color: $primary-color;
+            }
+
+            &.color-accent {
+              background-color: #17a2b8;
+            }
+          }
+        }
+      }
+    }
   }
-  
+}

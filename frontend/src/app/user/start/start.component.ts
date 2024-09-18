@@ -1,109 +1,100 @@
+// start.component.ts
 import { LocationStrategy } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
 import { QuestionService } from '../../services/question.service';
-import { QuizService } from '../../services/quiz.service';
+import { Question } from '../../services/question'; // Import the Question interface
 
 @Component({
   selector: 'app-start',
   templateUrl: './start.component.html',
-  styleUrls: ['./start.component.css'],
+  styleUrls: ['./start.component.scss'],
 })
 export class StartComponent implements OnInit {
-  // Explicitly defining the types
-  qid: string = ''; // 'qid' will be a string
-  questions: any[] = []; // 'questions' will be an array of any type
+  qid: number = 0;
+  questions: Question[] = [];
 
-  marksGot = 0;
-  correctAnswers = 0;
-  attempted = 0;
+  marksGot: number = 0;
+  correctAnswers: number = 0;
+  attempted: number = 0;
 
-  isSubmit = false;
-
-  timer: number | undefined;
+  isSubmit: boolean = false;
+  timer: number = 0;
 
   constructor(
     private locationSt: LocationStrategy,
     private _route: ActivatedRoute,
-    private _question: QuestionService,
-    private _quiz: QuizService
+    private _question: QuestionService
   ) {}
 
   ngOnInit(): void {
     this.preventBackButton();
-    // this.qid = this._route.snapshot.params.qid; // Expecting 'qid' to be a string
-    this.qid = this._route.snapshot.params['qid'];
-    console.log(this.qid);
+    this.qid = Number(this._route.snapshot.params['qid']);
     this.loadQuestions();
   }
 
-  loadQuestions() {
+  loadQuestions(): void {
     this._question.getQuestionsOfQuizForTest(this.qid).subscribe(
-      (data: any) => {
-        this.questions = data; // Assuming 'data' is an array
-
-        this.timer = this.questions.length * 2 * 60; // Timer is set based on questions length
-
-        console.log(this.questions);
+      (data: Question[]) => {
+        this.questions = data;
+        this.timer = this.questions.length * 2 * 60;
         this.startTimer();
       },
       (error) => {
-        console.log(error);
+        console.error(error);
         Swal.fire('Error', 'Error in loading questions of quiz', 'error');
       }
     );
   }
 
-  preventBackButton() {
-    history.pushState(null, '', location.href); // Pass an empty string '' instead of null
+  preventBackButton(): void {
+    history.pushState(null, '', location.href);
     this.locationSt.onPopState(() => {
-      history.pushState(null, '', location.href); // Pass an empty string '' instead of null
+      history.pushState(null, '', location.href);
     });
   }
 
-  submitQuiz() {
+  submitQuiz(): void {
     Swal.fire({
       title: 'Do you want to submit the quiz?',
       showCancelButton: true,
-      confirmButtonText: `Submit`,
+      confirmButtonText: 'Submit',
       icon: 'info',
-    }).then((e) => {
-      if (e.isConfirmed) {
+    }).then((result) => {
+      if (result.isConfirmed) {
         this.evalQuiz();
       }
     });
   }
 
-  startTimer() {
-    let t = window.setInterval(() => {
-      if (this.timer && this.timer <= 0) {
+  startTimer(): void {
+    const intervalId = setInterval(() => {
+      if (this.timer <= 0) {
+        clearInterval(intervalId);
         this.evalQuiz();
-        clearInterval(t);
-      } else if (this.timer) {
+      } else {
         this.timer--;
       }
     }, 1000);
   }
 
-  getFormattedTime() {
-    const mm = Math.floor(this.timer! / 60);
-    const ss = this.timer! - mm * 60;
+  getFormattedTime(): string {
+    const mm = Math.floor(this.timer / 60);
+    const ss = this.timer % 60;
     return `${mm} min : ${ss} sec`;
   }
 
-  evalQuiz() {
-    // Perform evaluation logic here
+  evalQuiz(): void {
     this._question.evalQuiz(this.questions).subscribe(
       (data: any) => {
-        console.log(data);
         this.marksGot = data.marksGot;
         this.correctAnswers = data.correctAnswers;
         this.attempted = data.attempted;
         this.isSubmit = true;
       },
       (error) => {
-        console.log(error);
+        console.error(error);
       }
     );
   }

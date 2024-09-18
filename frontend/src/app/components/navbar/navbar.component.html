@@ -1,0 +1,10 @@
+<nav>
+  <div *ngIf="!isLoggedIn">
+    <a routerLink="/login">Login</a>
+    <a routerLink="/signup">Register</a>
+  </div>
+  <div *ngIf="isLoggedIn">
+    <span>Welcome</span>
+    <button (click)="logout()">Logout</button>
+  </div>
+</nav>

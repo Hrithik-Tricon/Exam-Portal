@@ -1,6 +1,10 @@
+// question.service.ts
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import baseUrl from './helper';
+import { Question } from './question';
+// import { Question } from './question'; // Import the Question interface
 
 @Injectable({
   providedIn: 'root',
@@ -8,25 +12,28 @@ import baseUrl from './helper';
 export class QuestionService {
   constructor(private _http: HttpClient) {}
 
-  public getQuestionsOfQuiz(qid) {
-    return this._http.get(`${baseUrl}/question/quiz/all/${qid}`);
+  // Get all questions for a specific quiz
+  public getQuestionsOfQuiz(qid: number): Observable<Question[]> {
+    return this._http.get<Question[]>(`${baseUrl}/question/quiz/all/${qid}`);
   }
 
-  public getQuestionsOfQuizForTest(qid) {
-    return this._http.get(`${baseUrl}/question/quiz/${qid}`);
+  // Get questions of quiz for test
+  public getQuestionsOfQuizForTest(qid: number): Observable<Question[]> {
+    return this._http.get<Question[]>(`${baseUrl}/question/quiz/${qid}`);
   }
 
-  //add question
-  public addQuestion(question) {
-    return this._http.post(`${baseUrl}/question/`, question);
-  }
-  //delete question
-  public deleteQuestion(questionId) {
-    return this._http.delete(`${baseUrl}/question/${questionId}`);
+  // Add a question
+  public addQuestion(question: Question): Observable<Question> {
+    return this._http.post<Question>(`${baseUrl}/question/`, question);
   }
 
-  //eval quiz
-  public evalQuiz(questions) {
-    return this._http.post(`${baseUrl}/question/eval-quiz`, questions);
+  // Delete a question
+  public deleteQuestion(questionId: number): Observable<void> {
+    return this._http.delete<void>(`${baseUrl}/question/${questionId}`);
+  }
+
+  // Evaluate quiz
+  public evalQuiz(questions: Question[]): Observable<any> {
+    return this._http.post<any>(`${baseUrl}/question/eval-quiz`, questions);
   }
 }

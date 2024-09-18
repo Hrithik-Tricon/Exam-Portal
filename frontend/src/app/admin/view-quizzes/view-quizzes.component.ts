@@ -1,18 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { QuizService } from '../../services/quiz.service';
-
-// Define an interface for the quiz
-interface Quiz {
-  id: number;  // or whatever type the ID is
-  title: string;
-  // Add other properties as needed
-}
+import { Quiz } from '../../services/quiz'; // Import the Quiz interface
 
 @Component({
   selector: 'app-view-quizzes',
   templateUrl: './view-quizzes.component.html',
-  styleUrls: ['./view-quizzes.component.css'],
+  styleUrls: ['./view-quizzes.component.scss'],
 })
 export class ViewQuizzesComponent implements OnInit {
   quizzes: Quiz[] = []; // Use the Quiz interface here
@@ -21,7 +15,7 @@ export class ViewQuizzesComponent implements OnInit {
 
   ngOnInit(): void {
     this._quiz.quizzes().subscribe(
-      (data: Quiz[]) => { // Use the Quiz type here
+      (data: Quiz[]) => { // Ensure the type matches
         this.quizzes = data;
         console.log(this.quizzes);
       },
@@ -32,7 +26,7 @@ export class ViewQuizzesComponent implements OnInit {
     );
   }
 
-  deleteQuiz(qId: number): void { // Specify the type for qId
+  deleteQuiz(qId: number): void {
     Swal.fire({
       icon: 'info',
       title: 'Are you sure ?',
@@ -41,9 +35,12 @@ export class ViewQuizzesComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this._quiz.deleteQuiz(qId).subscribe(
-          (data) => {
-            this.quizzes = this.quizzes.filter((quiz) => quiz.id !== qId);
-            Swal.fire('Success', 'Quiz deleted ', 'success');
+          () => {
+            // Ensure that the quiz ID is valid before filtering
+            if (qId !== undefined) {
+              this.quizzes = this.quizzes.filter((quiz) => quiz.id !== qId);
+            }
+            Swal.fire('Success', 'Quiz deleted', 'success');
           },
           (error) => {
             Swal.fire('Error', 'Error in deleting quiz', 'error');

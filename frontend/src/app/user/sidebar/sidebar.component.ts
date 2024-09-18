@@ -3,11 +3,12 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { CategoryService } from '../../services/category.service';
 
 @Component({
-  selector: 'app-sidebar-user',
+  selector: 'app-sidebar-user1',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.css'],
+  styleUrls: ['./sidebar.component.scss'],
+  standalone: true,
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent1 implements OnInit {
   categories: any[] = []; // Explicitly defining the type as an array of any type
 
   constructor(private _cat: CategoryService, private _snack: MatSnackBar) {}

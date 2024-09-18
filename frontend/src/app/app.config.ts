@@ -1,50 +1,80 @@
 import { ApplicationConfig } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, RouterModule } from '@angular/router';
 import { provideClientHydration } from '@angular/platform-browser';
-import { provideHttpClient, withInterceptors } from '@angular/common/http'; 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { provideHttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { provideForms } from '@angular/forms';
-import { provideMatFormField } from '@angular/material/form-field';
-import { provideMatButton } from '@angular/material/button';
-import { provideMatInput } from '@angular/material/input';
-import { provideMatSnackBar } from '@angular/material/snack-bar';
-import { provideMatCard } from '@angular/material/card';
-import { provideMatToolbar } from '@angular/material/toolbar';
-import { provideMatIcon } from '@angular/material/icon';
-import { provideMatList } from '@angular/material/list';
-import { provideMatSlideToggle } from '@angular/material/slide-toggle';
-import { provideMatSelect } from '@angular/material/select';
-import { provideMatProgressSpinner } from '@angular/material/progress-spinner';
-import { authInterceptorProviders } from './services/auth.interceptor';
-import { provideCKEditor } from '@ckeditor/ckeditor5-angular';
-import { provideNgxUiLoader } from 'ngx-ui-loader';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatCardModule } from '@angular/material/card';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSelectModule } from '@angular/material/select';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { AuthInterceptor } from './services/auth.interceptor';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { routes } from './app.routes';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { LoginComponent } from './login/login.component';
+import { ProfileComponent } from './profile/profile.component';
+import { SidebarComponent } from './admin/sidebar/sidebar.component';
+import { UserDashboardComponent } from './user/user-dashboard/user-dashboard.component';
+import { SignupComponent } from './signup/signup.component';
+import { AddCategoryComponent } from './admin/add-category/add-category.component';
+import { AddQuestionComponent } from './admin/add-questions/add-questions.component';
+import { AddQuizComponent } from './admin/add-quiz/add-quiz.component';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { UpdateQuizComponent } from './admin/update-quiz/update-quiz.component';
+import { ViewCategoriesComponent } from './admin/veiw-categories/veiw-categories.component';
+import { ViewQuizQuestionsComponent } from './admin/view-quiz-questions/view-quiz-questions.component';
+import { ViewQuizzesComponent } from './admin/view-quizzes/view-quizzes.component';
+import { WelcomeComponent } from './admin/welcome/welcome.component';
+
+const httpInterceptorProviders = [
+  { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+];
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideClientHydration(),
-    provideHttpClient(
-      withInterceptors([authInterceptorProviders])
-    ),
+    provideHttpClient(),
     provideAnimations(),
-    provideForms(),
-    provideMatFormField(),
-    provideMatButton(),
-    provideMatInput(),
-    provideMatSnackBar(),
-    provideMatCard(),
-    provideMatToolbar(),
-    provideMatIcon(),
-    provideMatList(),
-    provideMatSlideToggle(),
-    provideMatSelect(),
-    provideMatProgressSpinner(),
-    provideCKEditor(),
-    provideNgxUiLoader({
-      showForeground: true,
-    }), provideAnimationsAsync(),
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatInputModule,
+    MatSnackBarModule,
+    MatCardModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatListModule,
+    MatSlideToggleModule,
+    MatSelectModule,
+    MatProgressSpinnerModule,
+    CKEditorModule,
+    NgxUiLoaderModule,
+    ...httpInterceptorProviders,
+    NavbarComponent,
+    LoginComponent,
+    ProfileComponent,
+    SidebarComponent,
+    UserDashboardComponent,
+    SignupComponent,
+    AddCategoryComponent,
+    AddQuestionComponent,
+    AddQuizComponent,
+    DashboardComponent,
+    UpdateQuizComponent,
+    ViewCategoriesComponent,
+    ViewQuizQuestionsComponent,
+    ViewQuizzesComponent,
+    WelcomeComponent,
   ],
 };
-

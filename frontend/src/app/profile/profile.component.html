@@ -1,52 +1,46 @@
-<mat-card *ngIf="user">
-    <h1>Your Profile Details</h1>
-    <!-- {{ user | json }} -->
-    <mat-card-content>
-      <div class="bootstrap-wrapper">
-        <div class="container">
-          <div class="container text-center">
-            <img
-              src="https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg"
-              alt=""
-              class="profile-image"
-            />
-  
-            <h1 class="mt20">{{ user.firstName }} {{ user.lastName }}</h1>
-          </div>
-  
-          <div class="row">
-            <div class="col-md-10 offset-md-1">
-              <!-- //table Details  -->
-              <table class="table text-center">
-                <tr>
-                  <td>Username</td>
-                  <td>{{ user.username }}</td>
-                </tr>
-                <tr>
-                  <td>Userid</td>
-                  <td>EXAM{{ user.id }}</td>
-                </tr>
-                <tr>
-                  <td>Phone</td>
-                  <td>{{ user.phone }}</td>
-                </tr>
-                <tr>
-                  <td>Role</td>
-                  <td>{{ user.authorities[0].authority }}</td>
-                </tr>
-                <tr>
-                  <td>Status</td>
-                  <td>{{ user.enabled ? "ACTIVE" : "NOTACTIVE" }}</td>
-                </tr>
-              </table>
-            </div>
-          </div>
-        </div>
+<div class="bootstrap-wrapper">
+  <div class="container">
+    <div class="container text-center">
+      <img
+        src="https://hkt9137.netlify.app/assets/pic-fotor-2024060294827.png"
+        alt=""
+        class="profile-image"
+      />
+
+      <h1 class="mt20">{{ user?.firstName || 'First Name' }} {{ user?.lastName || 'Last Name' }}</h1>
+    </div>
+
+    <div class="row">
+      <div class="col-md-10 offset-md-1">
+        <!-- Table Details -->
+        <table class="table text-center">
+          <tr>
+            <td>Username</td>
+            <td>{{ user?.username || 'Username' }}</td>
+          </tr>
+          <tr>
+            <td>UserID</td>
+            <td>EXAM{{ user?.id || 'N/A' }}</td>
+          </tr>
+          <tr>
+            <td>Phone</td>
+            <td>{{ user?.phone || 'Phone Number' }}</td>
+          </tr>
+          <tr>
+            <td>Role</td>
+            <td>{{ user?.authorities?.[0]?.authority || 'Role' }}</td>
+          </tr>
+          <tr>
+            <td>Status</td>
+            <td>{{ user?.enabled ? 'ACTIVE' : 'NOT ACTIVE' }}</td>
+          </tr>
+        </table>
       </div>
-    </mat-card-content>
-    <mat-card-actions class="text-center">
-      <button mat-raised-button color="primary">UPDATE</button>
-      <button mat-raised-button color="accent">SHARE</button>
-    </mat-card-actions>
-  </mat-card>
-  
+    </div>
+  </div>
+
+  <div class="text-center mt-3">
+    <button mat-raised-button color="primary">UPDATE</button>
+    <button mat-raised-button color="accent">SHARE</button>
+  </div>
+</div>

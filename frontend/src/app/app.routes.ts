@@ -1,10 +1,52 @@
-// app.routes.ts
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
-// import { AppRoutingModule } from './app-routing.module';
+import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
+import { ProfileComponent } from './profile/profile.component';
+import { LoadQuizComponent } from './user/load-quiz/load-quiz.component';
+import { InstructionsComponent } from './user/instructions/instructions.component';
+import { SidebarComponent } from './admin/sidebar/sidebar.component';
+import { SidebarComponent1 } from './user/sidebar/sidebar.component';
+import { StartComponent } from './user/start/start.component';
+import { UserDashboardComponent } from './user/user-dashboard/user-dashboard.component';
+import { SignupComponent } from './signup/signup.component';
+import { WelcomeComponent } from './admin/welcome/welcome.component';
+import { ViewQuizzesComponent } from './admin/view-quizzes/view-quizzes.component';
+import { ViewQuizQuestionsComponent } from './admin/view-quiz-questions/view-quiz-questions.component';
+import { ViewCategoriesComponent } from './admin/veiw-categories/veiw-categories.component';
+import { UpdateQuizComponent } from './admin/update-quiz/update-quiz.component';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { AddQuizComponent } from './admin/add-quiz/add-quiz.component';
+import { AddQuestionComponent } from './admin/add-questions/add-questions.component';
+import { AddCategoryComponent } from './admin/add-category/add-category.component';
+
+const routes: Routes = [
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'profile', component: ProfileComponent },
+  { path: 'user/load-quiz', component: LoadQuizComponent },
+  { path: 'user/instruction', component: InstructionsComponent },
+  { path: 'admin/sidebar', component: SidebarComponent },
+  { path: 'user/sidebar', component: SidebarComponent1 },
+  { path: 'user/start', component: StartComponent },
+  { path: 'user/user-dashboard', component: UserDashboardComponent },
+  { path: 'signup', component: SignupComponent },
+  { path: 'admin/welcome', component: WelcomeComponent },
+  { path: 'admin/view-quizzes', component: ViewQuizzesComponent },
+  { path: 'admin/view-quiz-questions', component: ViewQuizQuestionsComponent },
+  { path: 'admin/view-categories', component: ViewCategoriesComponent },
+  { path: 'admin/update-quiz', component: UpdateQuizComponent },
+  { path: 'admin/dashboard', component: DashboardComponent },
+  { path: 'admin/add-quiz', component: AddQuizComponent },
+  { path: 'admin/add-questions', component: AddQuestionComponent },
+  { path: 'admin/add-category', component: AddCategoryComponent },
+];
 
 @NgModule({
-  imports: [AppRoutesModule],
-  exports: [RouterModule],
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
-export class AppRoutesModule {}
+export class AppRoutingModule { }
+
+export { routes };

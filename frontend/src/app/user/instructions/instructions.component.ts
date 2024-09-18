@@ -2,15 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { QuizService } from '../../services/quiz.service';
+import { Quiz } from '../../services/quiz';  // Import the Quiz interface
 
 @Component({
   selector: 'app-instructions',
   templateUrl: './instructions.component.html',
-  styleUrls: ['./instructions.component.css'],
+  styleUrls: ['./instructions.component.scss'],
 })
 export class InstructionsComponent implements OnInit {
-  qid: string | number = ''; // Explicitly define the type for qid
-  quiz: any = {}; // Explicitly define the type for quiz, or define a proper interface if you know the structure
+  qid: number = 0; 
+  quiz: Quiz = { id: 0, title: '' }; // Use the imported interface
 
   constructor(
     private _route: ActivatedRoute,
@@ -19,12 +20,13 @@ export class InstructionsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.qid = this._route.snapshot.params['qid']; // Use bracket notation to avoid the index signature error
+    const qidParam = this._route.snapshot.params['qid']; 
+    this.qid = Number(qidParam);
     console.log(this.qid);
 
     this._quiz.getQuiz(this.qid).subscribe(
-      (data: any) => {
-        this.quiz = data; // Assuming 'data' is an object containing quiz details
+      (data: Quiz) => {
+        this.quiz = data;
         console.log(this.quiz);
       },
       (error) => {

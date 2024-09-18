@@ -5,18 +5,18 @@ import { QuizService } from '../../services/quiz.service';
 @Component({
   selector: 'app-load-quiz',
   templateUrl: './load-quiz.component.html',
-  styleUrls: ['./load-quiz.component.css'],
+  styleUrls: ['./load-quiz.component.scss'],
 })
 export class LoadQuizComponent implements OnInit {
-  catId: string | number = 0; // Explicitly defining the type for catId
-  quizzes: any[] = []; // Explicitly defining quizzes as an array of any type
+  catId: number = 0; // Change to number type
+  quizzes: any[] = []; // Define quizzes as an array of any type
 
   constructor(private _route: ActivatedRoute, private _quiz: QuizService) {}
 
   ngOnInit(): void {
     this._route.params.subscribe((params) => {
-      this.catId = params['catId']; // Access 'catId' using bracket notation
-      if (this.catId == 0) {
+      this.catId = Number(params['catId']); // Convert to number
+      if (this.catId === 0) {
         console.log('Load all the quiz');
 
         this._quiz.getActiveQuizzes().subscribe(
@@ -26,7 +26,7 @@ export class LoadQuizComponent implements OnInit {
           },
           (error) => {
             console.log(error);
-            alert('error in loading all quizzes');
+            alert('Error in loading all quizzes');
           }
         );
       } else {
@@ -38,7 +38,8 @@ export class LoadQuizComponent implements OnInit {
             console.log(this.quizzes);
           },
           (error) => {
-            alert('error in loading quiz data');
+            console.log(error);
+            alert('Error in loading quiz data');
           }
         );
       }

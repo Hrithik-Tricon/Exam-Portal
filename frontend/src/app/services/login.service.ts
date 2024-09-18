@@ -1,7 +1,18 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Subject, Observable } from 'rxjs';
 import baseUrl from './helper';
+
+// Define the User interface
+export interface User {
+  id: number;
+  username: string;
+  firstName: string;
+  lastName: string;
+  phone: string;
+  authorities: Array<{ authority: string }>;
+  enabled: boolean;
+}
 
 @Injectable({
   providedIn: 'root',
@@ -11,66 +22,81 @@ export class LoginService {
 
   constructor(private http: HttpClient) {}
 
-  //current user: which is loggedin
-  public getCurrentUser() {
-    return this.http.get(`${baseUrl}/current-user`);
+  // Get current user
+  public getCurrentUser(): Observable<User> {
+    return this.http.get<User>(`${baseUrl}/current-user`);
   }
 
-  //generate token
-
-  public generateToken(loginData: any) {
-    return this.http.post(`${baseUrl}/generate-token`, loginData);
+  // Generate token
+  public generateToken(loginData: any): Observable<any> {
+    return this.http.post<any>(`${baseUrl}/generate-token`, loginData);
   }
 
-  //login user: set token in localStorage
-  public loginUser(token) {
-    localStorage.setItem('token', token);
-
-    return true;
-  }
-
-  //isLogin: user is logged in or not
-  public isLoggedIn() {
-    let tokenStr = localStorage.getItem('token');
-    if (tokenStr == undefined || tokenStr == '' || tokenStr == null) {
-      return false;
-    } else {
+  // Login user: set token in localStorage
+  public loginUser(token: string): boolean {
+    if (this.isBrowser()) {
+      localStorage.setItem('token', token);
       return true;
     }
+    return false;
   }
 
-  // logout : remove token from local storage
-  public logout() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    return true;
+  // Check if user is logged in
+  public isLoggedIn(): boolean {
+    if (this.isBrowser()) {
+      const tokenStr = localStorage.getItem('token');
+      return tokenStr !== null && tokenStr !== '';
+    }
+    return false;
   }
 
-  //get token
-  public getToken() {
-    return localStorage.getItem('token');
+  // Logout: remove token from local storage
+  public logout(): boolean {
+    if (this.isBrowser()) {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      return true;
+    }
+    return false;
   }
 
-  //set userDetail
-  public setUser(user) {
-    localStorage.setItem('user', JSON.stringify(user));
+  // Get token
+  public getToken(): string | null {
+    if (this.isBrowser()) {
+      return localStorage.getItem('token');
+    }
+    return null;
   }
 
-  //getUser
-  public getUser() {
-    let userStr = localStorage.getItem('user');
-    if (userStr != null) {
-      return JSON.parse(userStr);
-    } else {
-      this.logout();
-      return null;
+  // Set user details
+  public setUser(user: User): void {
+    if (this.isBrowser()) {
+      localStorage.setItem('user', JSON.stringify(user));
     }
   }
 
-  //get user role
+  // Get user details
+  public getUser(): User | null {
+    if (this.isBrowser()) {
+      const userStr = localStorage.getItem('user');
+      if (userStr !== null) {
+        return JSON.parse(userStr);
+      } else {
+        this.logout();
+        return null;
+      }
+    }
+    return null;
+  }
 
-  public getUserRole() {
-    let user = this.getUser();
-    return user.authorities[0].authority;
+  // Get user role
+  public getUserRole(): string {
+    const user = this.getUser();
+    return user ? user.authorities[0].authority : '';
+  }
+
+  // Check if running in browser
+  private isBrowser(): boolean {
+    return typeof window !== 'undefined' && typeof localStorage !== 'undefined';
   }
 }
