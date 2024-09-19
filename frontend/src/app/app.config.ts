@@ -1,5 +1,5 @@
 import { ApplicationConfig } from '@angular/core';
-import { provideRouter, RouterModule } from '@angular/router';
+import { provideRouter, RouterModule, ROUTES } from '@angular/router';
 import { provideClientHydration } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { provideHttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -19,6 +19,7 @@ import { AuthInterceptor } from './services/auth.interceptor';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { routes } from './app.routes';
+// import { MatCardModule } from '@angular/material/card';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -34,6 +35,10 @@ import { ViewCategoriesComponent } from './admin/veiw-categories/veiw-categories
 import { ViewQuizQuestionsComponent } from './admin/view-quiz-questions/view-quiz-questions.component';
 import { ViewQuizzesComponent } from './admin/view-quizzes/view-quizzes.component';
 import { WelcomeComponent } from './admin/welcome/welcome.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+// import { FormsModule } from '@angular/forms'; // For ngModel
+// import { MatFormFieldModule } from '@angular/material/form-field'; // For mat-form-field
+// import { MatInputModule } from '@angular/material/input'; 
 
 const httpInterceptorProviders = [
   { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
@@ -61,20 +66,7 @@ export const appConfig: ApplicationConfig = {
     CKEditorModule,
     NgxUiLoaderModule,
     ...httpInterceptorProviders,
-    NavbarComponent,
-    LoginComponent,
-    ProfileComponent,
-    SidebarComponent,
-    UserDashboardComponent,
-    SignupComponent,
-    AddCategoryComponent,
-    AddQuestionComponent,
-    AddQuizComponent,
-    DashboardComponent,
-    UpdateQuizComponent,
-    ViewCategoriesComponent,
-    ViewQuizQuestionsComponent,
-    ViewQuizzesComponent,
-    WelcomeComponent,
+    provideAnimationsAsync(),
   ],
 };
+

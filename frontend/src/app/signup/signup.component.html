@@ -1,94 +1,84 @@
 <div class="bootstrap-wrapper">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 offset-md-3">
-          <!-- <mat-card> -->
-            <div class="container text-center">
-              <img src="../../../assets/logo.png" alt="" />
-            </div>
-  
-            <h1 class="text-center">Register Here !!</h1>
-            <h1>Hrithik Kumar Thakur</h1>
-            <!-- {{ user | json }} -->
-  
-            <form (ngSubmit)="formSubmit()">
-              <!-- Username field -->
-              <!-- <mat-form-field class="full-width" appearance="outline"> -->
-                <!-- <mat-label>User Name</mat-label> -->
-                <input
-                 
-                  placeholder="Enter here"
-                />
-                <!-- <mat-hint>Username must be unique !!</mat-hint> -->
-              <!-- </mat-form-field> -->
-  
-              <!-- Password field -->
-              <!-- <mat-form-field class="full-width" appearance="outline"> -->
-                <!-- <mat-label>User Password</mat-label> -->
-                 <p>User Password</p>
-                <input
-                 
-                  placeholder="Enter here"
-                />
-              <!-- </mat-form-field> -->
-  
-              <!-- first name  -->
-              <!-- <mat-form-field class="full-width" appearance="outline"> -->
-                <!-- <mat-label>First Name</mat-label> -->
-                 <p>First Name</p>
-                <input
-                 
-                  placeholder="Enter here"
-                />
-              <!-- </mat-form-field> -->
-  
-              <!-- lastname -->
-              <!-- <mat-form-field class="full-width" appearance="outline"> -->
-                <!-- <mat-label>Last Name</mat-label> -->
-                 <p>Last Name</p>
-                <input
-                 
-                  placeholder="Enter here"
-                />
-              <!-- </mat-form-field> -->
-  
-              <!-- email -->
-              <!-- <mat-form-field class="full-width" appearance="outline"> -->
-                <!-- <mat-label>Email Address</mat-label> -->
-                 <p>Email Address</p>
-                <input
-                 
-                  placeholder="Enter here"
-                />
-              <!-- </mat-form-field> -->
-  
-              <!-- phone number -->
-              <!-- <mat-form-field class="full-width" appearance="outline"> -->
-                <!-- <mat-label>Phone Number</mat-label> -->
-                 <p>Phone Number</p>
-                <input
-                 
-                  placeholder="Enter here"
-                />
-              <!-- </mat-form-field> -->
-  
-              <div class="container text-center">
-                <button type="submit" mat-raised-button color="primary">
-                  Register
-                </button>
-                <button
-                  type="button"
-                  style="margin-left: 20px"
-                 
-                  color="accent"
-                >
-                  Clear
-                </button>
-              </div>
-            </form>
-          <!-- </mat-card> -->
-        </div>
+  <div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="col-md-8 col-lg-6">
+      <div class="text-center mb-4">
+        <img src="../../../assets/logo.png" alt="Logo" class="logo-img" />
       </div>
+
+      <h1 class="text-center mb-4">Register Here !!</h1>
+
+      <form (ngSubmit)="formSubmit()" class="registration-form">
+        <!-- Username field -->
+        <div class="form-group">
+          <label for="username" class="form-label">User Name</label>
+          <input
+            id="username"
+            type="text"
+            class="form-control"
+            placeholder="Enter your username"
+          />
+        </div>
+
+        <!-- Password field -->
+        <div class="form-group">
+          <label for="password" class="form-label">User Password</label>
+          <input
+            id="password"
+            type="password"
+            class="form-control"
+            placeholder="Enter your password"
+          />
+        </div>
+
+        <!-- First Name -->
+        <div class="form-group">
+          <label for="firstName" class="form-label">First Name</label>
+          <input
+            id="firstName"
+            type="text"
+            class="form-control"
+            placeholder="Enter your first name"
+          />
+        </div>
+
+        <!-- Last Name -->
+        <div class="form-group">
+          <label for="lastName" class="form-label">Last Name</label>
+          <input
+            id="lastName"
+            type="text"
+            class="form-control"
+            placeholder="Enter your last name"
+          />
+        </div>
+
+        <!-- Email Address -->
+        <div class="form-group">
+          <label for="email" class="form-label">Email Address</label>
+          <input
+            id="email"
+            type="email"
+            class="form-control"
+            placeholder="Enter your email address"
+          />
+        </div>
+
+        <!-- Phone Number -->
+        <div class="form-group">
+          <label for="phone" class="form-label">Phone Number</label>
+          <input
+            id="phone"
+            type="tel"
+            class="form-control"
+            placeholder="Enter your phone number"
+          />
+        </div>
+
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary btn-lg">Register</button>
+          <button type="button" class="btn btn-secondary btn-lg ml-3" (click)="resetForm()">Clear</button>
+        </div>
+      </form>
     </div>
   </div>
-  
+</div>

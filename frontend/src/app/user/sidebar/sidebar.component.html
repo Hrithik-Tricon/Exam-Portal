@@ -1,19 +1,14 @@
-<!-- <mat-card> -->
-    <!-- <mat-action-list> -->
-      <div mat-subheader>Available Categories</div>
-  
-      <button mat-list-item routerLink="/user-dashboard/0">
-        <!-- <mat-icon mat-list-icon>quiz</mat-icon> All Quizzes -->
-        All Quizzes
-      </button>
-      <button
-       
-       
-      >
-      <p>quiz</p>
-        <!-- <mat-icon mat-list-icon>quiz</mat-icon> {{ c.title }} -->
-      </button>
-    <!-- </mat-action-list> -->
-  <!-- </mat-card> -->
-  <!-- {{ categories | json }} -->
-  
+<div class="category-list-container">
+  <div class="category-header">Available Categories</div>
+
+  <button class="category-button" routerLink="/user-dashboard/0">
+    <i class="material-icons">quiz</i> All Quizzes
+  </button>
+  <button class="category-button" routerLink="/user-dashboard/0">
+    <i class="material-icons">quiz</i> All Quizzes
+  </button>
+  <button class="category-button">
+    <!-- <i class="material-icons">quiz</i> {{ c.title }} -->
+     Questions
+  </button>
+</div>

@@ -1,0 +1,107 @@
+/* Add a background gradient */
+.bootstrap-wrapper {
+  background: linear-gradient(135deg, #f3f4f6, #e2e3e5);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem; /* Add padding around the form */
+}
+
+/* Style the container */
+.container {
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 450px; /* Set a max-width for the form */
+}
+
+/* Style form headings */
+h1 {
+  color: #333;
+  font-family: 'Roboto', sans-serif;
+  font-size: 2.25rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Style the form labels and controls */
+.form-label {
+  font-size: 1.125rem;
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+
+/* Style form controls */
+.form-group {
+  margin-bottom: 1.5rem; /* Add spacing between form groups */
+}
+
+.form-control {
+  border-radius: 8px;
+  border: 1px solid #ced4da;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-control:focus {
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25);
+}
+
+/* Style form hints */
+.form-text {
+  font-size: 0.875rem;
+  color: #6c757d;
+}
+
+/* Style buttons */
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1.125rem;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #004085;
+}
+/* login.component.css */
+.logo-img {
+  width: 150px; /* Adjust the width as needed */
+  height: auto; /* Maintain aspect ratio */
+}
+
+
+.btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1.125rem;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
+}
+
+/* Style captcha */
+.g-recaptcha {
+  margin-top: 1.5rem;
+}
+
+/* Add transition effects */
+input, button {
+  transition: transform 0.2s ease-in-out;
+}
+
+input:focus, button:hover {
+  transform: scale(1.02);
+}

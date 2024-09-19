@@ -1,3 +1,102 @@
+/* Global form styling */
+form {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Title */
+h1 {
+  text-align: center;
+  color: #333;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+/* Labels and input fields styling */
+p {
+  font-size: 1rem;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  transition: all 0.3s ease;
+}
+
+input[type="text"]:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  outline: none;
+}
+
+/* CKEditor field */
+ckeditor {
+  display: block;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+/* Slide toggle styling */
+mat-slide-toggle {
+  display: block;
+  margin: 10px 0;
+}
+
+/* Category select styling */
+mat-form-field {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+/* Category mat-select field */
+.mat-form-field-wrapper {
+  border-radius: 5px;
+}
+
+/* Submit button styling */
+button[type="submit"] {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* Centering the form */
+.container {
+  margin-top: 50px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mt20 {
+  margin-top: 20px;
+}
+
 .w100 {
+  width: 100%;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .col-md-6 {
     width: 100%;
+    margin-bottom: 20px;
   }
+}

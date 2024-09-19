@@ -1,7 +1,7 @@
 // app-routing.module.ts
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
+// import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { LoadQuizComponent } from './user/load-quiz/load-quiz.component';
 import { InstructionsComponent } from './user/instructions/instructions.component';
@@ -20,6 +20,7 @@ import { AddQuizComponent } from './admin/add-quiz/add-quiz.component';
 import { UpdateQuizComponent } from './admin/update-quiz/update-quiz.component';
 import { AddQuestionComponent } from './admin/add-questions/add-questions.component';
 import { NormalGuard } from './services/normal.guard';
+import { HomeComponent } from './pages/home/home.component';
 
 
 const routes: Routes = [
@@ -29,8 +30,8 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'profile',
-    component: ProfileComponent, // Ensure ProfileComponent is accessible here
+    path: 'profile', //not randring
+    component: ProfileComponent, // Ensure ProfileComponent is accessible here 
   },
   {
     path: 'user/load-quiz',
