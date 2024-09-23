@@ -1,78 +1,40 @@
-<!-- <mat-card> -->
-  <h1>Add New Quiz</h1>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-8 offset-md-2">
-        <form [formGroup]="quizForm" (ngSubmit)="addQuiz()">
-          <!-- Title Field -->
-          <p>Enter Title</p>
-          <input
-            type="text"
-            formControlName="title"
-            placeholder="Enter here"
-            required
-          />
-  
-          <!-- Description Field -->
-          <p>Enter Description</p>
-          <ckeditor 
-            formControlName="description"
-            
-            (ready)="onEditorReady($event)">
-          </ckeditor>
-  
-          <!-- Max Marks -->
-          <div class="row">
-            <div class="col-md-6">
-              <p>Maximum Marks</p>
-              <input
-                type="text"
-                formControlName="maxMarks"
-                placeholder="Enter here"
-                required
-              />
-            </div>
-            <div class="col-md-6">
-              <p>Number of Questions</p>
-              <input
-                type="text"
-                formControlName="numberOfQuestions"
-                placeholder="Enter here"
-                required
-              />
-            </div>
+<h1>Add New Quiz</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <form [formGroup]="quizForm" (ngSubmit)="addQuiz()">
+        <p>Enter Title</p>
+        <input type="text" formControlName="title" placeholder="Enter here" required />
+
+        <p>Enter Description</p>
+        <ckeditor formControlName="description" (ready)="onEditorReady($event)"></ckeditor>
+
+        <div class="row">
+          <div class="col-md-6">
+            <p>Maximum Marks</p>
+            <input type="text" formControlName="maxMarks" placeholder="Enter here" required />
           </div>
-  
-          <!-- Active Field -->
-          <p>Publish Status</p>
-          <mat-slide-toggle
-            formControlName="active"
-            class="mt20"
-          >
-            Active
-          </mat-slide-toggle>
-  
-          <!-- Category Select -->
-          <p>Categories</p>
-          <mat-form-field appearance="fill" class="mt20 w100">
-            <mat-label>Categories</mat-label>
-            <mat-select formControlName="category">
-              <mat-option *ngFor="let c of categories" [value]="c.cid">
-                {{ c.title }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-  
-          <!-- Submit Button -->
-          <div class="container text-center mt-3">
-            <button mat-raised-button color="accent" type="submit">Add</button>
+          <div class="col-md-6">
+            <p>Number of Questions</p>
+            <input type="text" formControlName="numberOfQuestions" placeholder="Enter here" required />
           </div>
-        </form>
-      </div>
+        </div>
+
+        <p>Publish Status</p>
+        <mat-slide-toggle formControlName="active" class="mt20">Active</mat-slide-toggle>
+
+        <p>Categories</p>
+        <mat-form-field appearance="fill" class="mt20 w100">
+          <mat-label>Categories</mat-label>
+          <mat-select formControlName="category">
+            <mat-option *ngFor="let c of categories" [value]="c.cid">{{ c.title }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div class="container text-center mt-3">
+          <button mat-raised-button color="accent" type="submit">Add</button>
+        </div>
+      </form>
     </div>
   </div>
-  <!-- </mat-card> -->
-  
-  <!-- Uncomment for debugging purposes -->
-  <!-- {{ quizForm.value | json }} -->
-  
+</div>

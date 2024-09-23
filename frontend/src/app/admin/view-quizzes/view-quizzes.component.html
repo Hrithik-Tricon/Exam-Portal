@@ -1,56 +1,27 @@
 <!-- Display quizzes using Angular Material components -->
-<div *ngFor="let q of quizzes" class="mt10 mr20 ml20">
-  <div class="mat-card">
-    <div class="mat-card-header">
-      <div class="mat-card-avatar example-header-image"></div>
-      <div class="mat-card-title">
-        {{ q.title }}
-      </div>
-      <div class="mat-card-subtitle">
-        {{ q.category.title }}
-      </div>
-    </div>
-    <div class="mat-card-content">
+<div *ngFor="let q of quizzes" class="quiz-card">
+  <!-- <mat-card>
+    <mat-card-header>
+      <div mat-card-avatar class="quiz-avatar"></div>
+      <mat-card-title>{{ q.title }}</mat-card-title>
+      <mat-card-subtitle>{{ q.category.title }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
       <p>{{ q.description }}</p>
-    </div>
-    <div class="mat-card-actions">
-      <button
-        mat-raised-button
-        color="accent"
-      >
-        Questions
-      </button>
-      <button mat-stroked-button color="accent" class="ml20">
-        Marks
-      </button>
-      <button mat-stroked-button color="accent" class="ml20">
-        Questions
-      </button>
-      <button
-        mat-raised-button
-        color="accent"
-        class="ml20"
-      >
-        Update
-      </button>
-      <button mat-flat-button color="accent" class="ml20">
-        Attempts
-      </button>
-      <button
-        mat-raised-button
-        color="warn"
-        class="ml10"
-        (click)="deleteQuiz(q.id)"
-      >
-        Delete
-      </button>
-    </div>
-  </div>
+    </mat-card-content>
+    <mat-card-actions> -->
+      <button mat-raised-button color="primary">Questions</button>
+      <button mat-stroked-button color="primary" class="ml10">Marks</button>
+      <button mat-stroked-button color="primary" class="ml10">Attempts</button>
+      <button mat-raised-button color="accent" class="ml10">Update</button>
+      <button mat-flat-button color="warn" class="ml10" (click)="deleteQuiz(q.id)">Delete</button>
+    <!-- </mat-card-actions>
+  </mat-card> -->
 </div>
 
 <!-- Button to add a new quiz -->
-<div class="container text-center mt20">
-  <button routerLink="/admin/add-quiz" mat-raised-button color="accent">
+<div class="add-quiz-button">
+  <button routerLink="admin/add-quiz" mat-raised-button color="accent">
     Add New Quiz
   </button>
 </div>

@@ -61,4 +61,10 @@ export class AddCategoryComponent implements OnInit {
       }
     );
   }
+  onSubmit(event: Event) {
+    event.preventDefault(); // Prevent default form submission
+    console.log('Categor added:', this.category);
+    alert('Categor has been added!'); // Show alert
+    // Here you would typically send the data to your service for further processing
+  }
 }

@@ -1,7 +1,7 @@
 <div class="bootstrap-wrapper">
   <div class="row">
     <div class="col-md-8 offset-md-2">
-      <form (ngSubmit)="formSubmit()">
+      <form (submit)="onSubmit($event)">
         <p>Title</p>
         <input
           required
@@ -13,6 +13,14 @@
         />
   
         <p>Description</p>
+        <input
+        required
+        autofocus
+        type="text"
+        name="title"
+        placeholder="Enter here"
+        [(ngModel)]="category.name"
+      />
         <ckeditor *ngIf="isBrowser && editor" [editor]="editor" [(ngModel)]="editorData"></ckeditor>
   
         <div class="container text-center mt15">

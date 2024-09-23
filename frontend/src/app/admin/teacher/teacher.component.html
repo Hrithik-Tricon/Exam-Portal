@@ -1,0 +1,40 @@
+<div class="teacher-form">
+  <h2>Add Teacher</h2>
+
+  <!-- Display total number of teachers -->
+  <p>Total Number of Teachers: {{ teacherCount }}</p>
+
+  <form (submit)="onSubmit($event)">
+      <div class="form-group">
+          <label for="name">Name:</label>
+          <input
+              type="text"
+              id="name"
+              (input)="onInputChange($event, 'name')"
+              required
+          />
+      </div>
+
+      <div class="form-group">
+          <label for="email">Email:</label>
+          <input
+              type="email"
+              id="email"
+              (input)="onInputChange($event, 'email')"
+              required
+          />
+      </div>
+
+      <div class="form-group">
+          <label for="subject">Subject:</label>
+          <input
+              type="text"
+              id="subject"
+              (input)="onInputChange($event, 'subject')"
+              required
+          />
+      </div>
+
+      <button type="submit">Add Teacher</button>
+  </form>
+</div>

@@ -36,6 +36,7 @@ import { ViewQuizQuestionsComponent } from './admin/view-quiz-questions/view-qui
 import { ViewQuizzesComponent } from './admin/view-quizzes/view-quizzes.component';
 import { WelcomeComponent } from './admin/welcome/welcome.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { TeacherComponent } from './admin/teacher/teacher.component';
 // import { FormsModule } from '@angular/forms'; // For ngModel
 // import { MatFormFieldModule } from '@angular/material/form-field'; // For mat-form-field
 // import { MatInputModule } from '@angular/material/input'; 
@@ -67,6 +68,7 @@ export const appConfig: ApplicationConfig = {
     NgxUiLoaderModule,
     ...httpInterceptorProviders,
     provideAnimationsAsync(),
+    TeacherComponent
   ],
 };
 

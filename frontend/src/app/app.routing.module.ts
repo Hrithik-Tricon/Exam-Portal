@@ -2,7 +2,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 // import { HomeComponent } from './home/home.component';
-import { ProfileComponent } from './profile/profile.component';
+// import { ProfileComponent } from './profile/profile.component';
 import { LoadQuizComponent } from './user/load-quiz/load-quiz.component';
 import { InstructionsComponent } from './user/instructions/instructions.component';
 import { SidebarComponent1 } from './user/sidebar/sidebar.component';
@@ -15,18 +15,32 @@ import { AdminGuard } from './services/admin.guard';
 import { WelcomeComponent } from './admin/welcome/welcome.component';
 import { ViewCategoriesComponent } from './admin/veiw-categories/veiw-categories.component';
 import { AddCategoryComponent } from './admin/add-category/add-category.component';
-import { ViewQuizzesComponent } from './admin/view-quizzes/view-quizzes.component';
+// import { ViewQuizzesComponent } from './admin/view-quizzes/view-quizzes.component';
 import { AddQuizComponent } from './admin/add-quiz/add-quiz.component';
 import { UpdateQuizComponent } from './admin/update-quiz/update-quiz.component';
 import { AddQuestionComponent } from './admin/add-questions/add-questions.component';
 import { NormalGuard } from './services/normal.guard';
 import { HomeComponent } from './pages/home/home.component';
+import { ProfileComponent } from './profile/profile.component';
+import { TeacherComponent } from './admin/teacher/teacher.component';
+import { ViewQuizzesComponent } from './admin/view-quizzes/view-quizzes.component';
+// import { ViewQuizzesComponent } from './admin/view-quizzes/view-quizzes.component';
 
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
+    pathMatch: 'full',
+  },
+  {
+    path: 'admin/view-quizzes',
+    component: ViewQuizzesComponent,
+    pathMatch: 'full',
+  },
+  {
+    path: 'admin/teacher',
+    component: TeacherComponent,
     pathMatch: 'full',
   },
   {
@@ -72,10 +86,10 @@ const routes: Routes = [
         path: '',
         component: WelcomeComponent,
       },
-      {
-        path: 'profile',
-        component: ProfileComponent,
-      },
+      // {
+      //   path: 'welcome',
+      //   component: WelcomeComponent,
+      // },
       {
         path: 'categories',
         component: ViewCategoriesComponent,
@@ -84,10 +98,10 @@ const routes: Routes = [
         path: 'add-category',
         component: AddCategoryComponent,
       },
-      {
-        path: 'quizzes',
-        component: ViewQuizzesComponent,
-      },
+      // {
+      //   path: 'quizzes',
+      //   component: ViewQuizzesComponent,
+      // },
       {
         path: 'add-quiz',
         component: AddQuizComponent,
