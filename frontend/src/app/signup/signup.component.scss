@@ -1,92 +1,129 @@
-/* login.component.css */
+/* General Body Style */
+.body {
+  font-family: 'Roboto', sans-serif; /* Using Google Fonts */
+  background-image: url('assets/BG_img.png'); /* Updated path */
+  background-size: cover; /* Cover the entire viewport */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Prevent repeating the image */
+  background-attachment: fixed; /* Make the background image fixed so it stays in place while content scrolls */
+  min-height: 100vh; /* Ensure minimum height of full viewport */
+  margin: 0; /* Remove default margin */
+  padding: 0;
+}
 
+/* Bootstrap Wrapper */
 .bootstrap-wrapper {
-  background-color: #f9f9f9;
   padding: 2rem 0;
+  background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent background */
+  display: flex;
   justify-content: center;
-  margin-left: 18%;
+  align-items: center;
+  min-height: 100vh; /* Full screen height */
 }
 
 .container {
   max-width: 960px;
-  min-height: 100vh; /* Full screen height */
 }
 
+/* Logo Styling */
 .logo-img {
   width: 150px;
   height: auto;
+  transition: transform 0.3s ease; /* Subtle hover animation */
 }
 
+.logo-img:hover {
+  transform: scale(1.1);
+}
+
+/* Form Styling */
 .registration-form {
-  background-color: #fff;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  padding: 2rem; /* Adjusted padding */
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.registration-form:hover {
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2); /* Hover shadow effect */
 }
 
 h1 {
-  color: #333;
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
+  color: #007bff;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Input Fields */
+.form-group {
+  margin-bottom: 1rem; /* Reduced space between fields */
 }
 
 .form-label {
+  display: block;
   font-weight: 600;
+  margin-bottom: 0.5rem; /* Reduced space below the label */
 }
 
 .form-control {
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  padding: 0.75rem 1rem;
-  margin-bottom: 1.5rem; /* Add margin between each form field */
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  font-size: 1rem;
 }
 
 .form-control:focus {
   border-color: #007bff;
-  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25);
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
+/* Button Styles */
 .btn {
-  padding: 0.75rem 1.5rem;
-  border-radius: 4px;
+  padding: 0.75rem 1.75rem;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .btn-primary {
   background-color: #007bff;
   border: none;
-  color: #fff;
+  color: white;
 }
 
 .btn-primary:hover {
   background-color: #0056b3;
+  transform: scale(1.05);
 }
 
 .btn-secondary {
   background-color: #6c757d;
   border: none;
-  color: #fff;
+  color: white;
 }
 
 .btn-secondary:hover {
   background-color: #5a6268;
+  transform: scale(1.05);
 }
 
+/* Centering Elements */
 .text-center {
   text-align: center;
 }
 
-.min-vh-100 {
-  min-height: 100vh;
-}
+/* Responsive Design */
+@media (max-width: 768px) {
+  .col-md-8, .col-lg-6 {
+    width: 100%;
+    padding: 0 2rem;
+  }
 
-.d-flex {
-  display: flex;
-}
-
-.justify-content-center {
-  justify-content: center;
-}
-
-.align-items-center {
-  align-items: center;
+  h1 {
+    font-size: 2rem;
+  }
 }
